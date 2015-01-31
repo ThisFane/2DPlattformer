@@ -17,11 +17,7 @@ public class PlayerMovement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		/*
-		 * 
-		 * Das ist nur um zu gucken was jetzt passiert
-		 * 
-		 */
+
 	}
 
 

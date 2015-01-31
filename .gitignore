@@ -1,18 +1,8 @@
 # Unity3D .gitignore file.
 #	 Store this file at the root of your local repository.
 .DS_Store
-2DPlattformer/Library/AssetImportState
-2DPlattformer/Library/AssetServerCacheV3
-2DPlattformer/Library/FailedAssetImports.txt
-2DPlattformer/Library/ScriptAssemblies
-2DPlattformer/Library/ScriptMapper
-2DPlattformer/Library/assetDatabase3
-2DPlattformer/Library/cache
-2DPlattformer/Library/expandedItems
-2DPlattformer/Library/metadata
-2DPlattformer/Library/previews
-2DPlattformer/Library/guidmapper
 2DPlattformer/Builds/*
+2DPlattformer/Library/*
 Temp
 *.pidb
 build
@@ -30,3 +20,7 @@ sysinfo.txt
 2DPlattformer/2DPlattformer-csharp.sln
 2DPlattformer/2DPlattformer.sln
 2DPlattformer/Library/assetDatabase3
+2DPlattformer/2DPlattformer.userprefs
+2DPlattformer/Library/assetDatabase3
+2DPlattformer/Library/ScriptAssemblies/Assembly-CSharp.dll
+2DPlattformer/Library/ScriptAssemblies/Assembly-CSharp.dll
