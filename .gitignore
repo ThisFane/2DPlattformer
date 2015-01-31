@@ -3,6 +3,8 @@
 .DS_Store
 2DPlattformer/Builds/*
 2DPlattformer/Library/*
+Library
+Library/*
 Temp
 *.pidb
 build
