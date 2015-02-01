@@ -11,9 +11,6 @@ public class PlayerMovement : MonoBehaviour
 	public static bool grounded = false;
 	public static bool lookingLeft = true;
 
-	public ContactPoint2D contact; 
-
-
 	// Use this for initialization
 	void Start () 
 	{
@@ -47,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
 	//returns 1 if looking right and 0 if looking left!
 
-	void Flip()
+	public void Flip()
 	{
 		lookingLeft = !lookingLeft;
 		Vector3 theScale = transform.localScale;

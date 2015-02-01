@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerUtil : MonoBehaviour 
 {
-	//public static GameObject player = this.gameObject;
+	//public GameObject player;
 	public static int playerHealth = 10;
 	public static int playerAttack = 1;
 	public static int playerAttackSpeed = 2; 
@@ -13,7 +13,6 @@ public class PlayerUtil : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
 	}
 	
 	// Update is called once per frame
@@ -26,7 +25,15 @@ public class PlayerUtil : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.O) && Input.GetKeyDown(KeyCode.U))
 		{
-			Application.LoadLevel("test1");
+			if(!PlayerMovement.lookingLeft)
+			{
+				this.gameObject.GetComponent<PlayerMovement>().Flip();
+				Application.LoadLevel("test1");
+			}
+			else
+			{
+				Application.LoadLevel("test1");
+			}
 		}
 	}
 }
