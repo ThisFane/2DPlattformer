@@ -24,5 +24,29 @@ sysinfo.txt
 2DPlattformer/Library/assetDatabase3
 2DPlattformer/2DPlattformer.userprefs
 2DPlattformer/Library/assetDatabase3
+2DPlattformer/Library/ScriptAssemblies/*.dll
 2DPlattformer/Library/ScriptAssemblies/Assembly-CSharp.dll
-2DPlattformer/Library/ScriptAssemblies/Assembly-CSharp.dll
+*.userprefs
+
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
