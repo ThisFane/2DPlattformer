@@ -4,15 +4,19 @@ using System.Collections;
 public class PlayerUtil : MonoBehaviour 
 {
 	//public GameObject player;
-	public static int playerHealth = 10;
+	public int playerHealth = 10;
 	public static int playerAttack = 1;
 	public static int playerAttackSpeed = 2; 
+	bool wasHit = false;
 	public GameObject arrow;
+
+	float invinceTime = 2f;
 
 
 	// Use this for initialization
 	void Start () 
 	{
+
 	}
 	
 	// Update is called once per frame
@@ -36,4 +40,21 @@ public class PlayerUtil : MonoBehaviour
 			}
 		}
 	}
+
+	void isHit()
+	{
+		wasHit = !wasHit;
+	}
+
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if(coll.gameObject.tag == "enemy" && !wasHit)
+		{
+			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			wasHit = !wasHit;
+			Invoke("isHit", invinceTime);
+		}
+	}
+
+
 }

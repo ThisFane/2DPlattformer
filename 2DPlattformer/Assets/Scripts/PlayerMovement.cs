@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
+
 	void OnCollisionStay2D(Collision2D coll)
 	{
 		if(coll.gameObject.tag == "ground")
