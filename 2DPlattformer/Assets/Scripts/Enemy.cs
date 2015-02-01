@@ -6,18 +6,21 @@ public class Enemy : MonoBehaviour
 
 	public static int health = 10;
 	public int enemyType = 1;
-	EnemyType enemy = new EnemyType();
+	public EnemyType enemy = new EnemyType();
 
 	// Use this for initialization
 	void Start () 
 	{
-		
+		enemyTypeCheck();
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-
+		if(enemy.getHealth() <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 	void enemyTypeCheck()

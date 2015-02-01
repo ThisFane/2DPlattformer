@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+	
 	}
 
 	void giveVelocity(bool direction)
@@ -42,8 +42,7 @@ public class Projectile : MonoBehaviour
 		if(other.gameObject.tag == "enemy" || other.gameObject.tag == "boundry")
 		{
 			GameObject temp = other.gameObject;
-			temp.GetComponent<Enemy>();
-			temp.GetComponent<EnemyHandler>();
+			temp.GetComponent<Enemy>().enemy.setHealth(temp.GetComponent<Enemy>().enemy.getHealth()-PlayerUtil.playerAttack);
 			Destroy(arrow);
 		}
 	}

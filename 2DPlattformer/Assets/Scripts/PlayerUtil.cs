@@ -5,7 +5,7 @@ public class PlayerUtil : MonoBehaviour
 {
 	//public static GameObject player = this.gameObject;
 	public static int playerHealth = 10;
-	public static int playerAttack = 2;
+	public static int playerAttack = 1;
 	public static int playerAttackSpeed = 2; 
 	public GameObject arrow;
 
