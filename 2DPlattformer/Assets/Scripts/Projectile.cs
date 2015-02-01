@@ -51,10 +51,14 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.gameObject.tag == "enemy" || other.gameObject.tag == "boundry")
+		if(other.gameObject.tag == "enemy")
 		{
 			GameObject temp = other.gameObject;
 			temp.GetComponent<Enemy>().enemy.setHealth(temp.GetComponent<Enemy>().enemy.getHealth()-PlayerUtil.playerAttack);
+			Destroy(arrow);
+		}
+		if(other.gameObject.tag == "boundry")
+		{
 			Destroy(arrow);
 		}
 	}
