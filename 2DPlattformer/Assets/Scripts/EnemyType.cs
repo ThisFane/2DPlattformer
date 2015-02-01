@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyType : Object 
+public class EnemyType : MonoBehaviour
 {
 	private string name = "Lumberjack";
 	private int health = 5;
