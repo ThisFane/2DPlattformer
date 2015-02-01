@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
 {
 	GameObject cam;
 	GameObject player;
+	bool flipped = false;
 	public static int health = 10;
 	public int enemyType = 1;
 	public EnemyType enemy = new EnemyType();
@@ -25,7 +26,29 @@ public class Enemy : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 		if(enemyType == 1 && player.renderer.isVisible && this.renderer.isVisible)
-			chasePlayer();
+			chasePlayer(); 
+		if(isPlayerLeftOfMe() && !flipped) 
+		{	
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+			flipped = true;
+		}
+		if(!isPlayerLeftOfMe() && flipped) 
+		{	
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+			flipped = false;
+		}
+	}
+
+	bool isPlayerLeftOfMe()
+	{
+		if(player.transform.position.x-this.transform.position.x < 0)
+			return false;
+		else
+			return true;
 	}
 
 	void chasePlayer()
