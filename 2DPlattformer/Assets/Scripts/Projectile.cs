@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
 		giveVelocity(PlayerMovement.lookingLeft);
 	}
 	
@@ -26,14 +27,25 @@ public class Projectile : MonoBehaviour
 			Vector3 theScale = transform.localScale;
 			theScale.x *= 1;
 			transform.localScale = theScale;
-			rigidbody2D.velocity = new Vector2(3f, 0f);
+			if(player.rigidbody2D.velocity.x != 0)
+			{ 
+				rigidbody2D.velocity = new Vector2((3f+(player.rigidbody2D.velocity.x*1.4f)), -0.1f);
+				//Debug.Log("MIT PLAYER: "+(player.rigidbody2D.velocity.x*10f));
+			}
+			else
+			 rigidbody2D.velocity = new Vector2(3f, -0.1f);
 		}
 		if(direction)
 		{
 			Vector3 theScale = transform.localScale;
 			theScale.x *= -1;
 			transform.localScale = theScale;
-			rigidbody2D.velocity = new Vector2(-3f, 0f);
+			if(player.rigidbody2D.velocity.x != 0)
+			{	
+				rigidbody2D.velocity = new Vector2((-3f+(player.rigidbody2D.velocity.x*1.4f)), -0.1f);
+			}
+			else
+			 rigidbody2D.velocity = new Vector2(-3f, -0.1f);
 		}
 	}
 

@@ -23,5 +23,10 @@ public class PlayerUtil : MonoBehaviour
 		{
 			GameObject Projectile = Instantiate(arrow, new Vector3(this.transform.position.x, this.transform.position.y, 0f), Quaternion.identity) as GameObject; 
 		}
+
+		if(Input.GetKeyDown(KeyCode.O) && Input.GetKeyDown(KeyCode.U))
+		{
+			Application.LoadLevel("test1");
+		}
 	}
 }

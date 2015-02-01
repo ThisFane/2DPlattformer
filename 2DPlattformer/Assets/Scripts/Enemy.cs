@@ -31,6 +31,14 @@ public class Enemy : MonoBehaviour
 			enemy.setHealth(5);
 			enemy.setAttack(1);
 		}
+
+		if(enemyType == 2)
+		{
+			enemy.setName("Stuff");
+			enemy.setHealth(8);
+			enemy.setAttack(1);
+		}
+
 	}
 
 
