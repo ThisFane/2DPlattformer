@@ -6,7 +6,7 @@ public class PlayerUtil : MonoBehaviour
 	//public GameObject player;
 	public int playerHealth = 10;
 	public static int playerAttack = 1;
-	public static int playerAttackSpeed = 2; 
+	public int playerAttackSpeed = 2; 
 	bool wasHit = false;
 	public GameObject arrow;
 
@@ -39,6 +39,16 @@ public class PlayerUtil : MonoBehaviour
 				Application.LoadLevel("test1");
 			}
 		}
+
+		if(playerHealth <= 0)
+		{
+			die();
+		}
+	}
+
+	void die()
+	{
+		Destroy(this.gameObject);
 	}
 
 	void isHit()
@@ -47,6 +57,16 @@ public class PlayerUtil : MonoBehaviour
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if(coll.gameObject.tag == "enemy" && !wasHit)
+		{
+			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			wasHit = !wasHit;
+			Invoke("isHit", invinceTime);
+		}
+	}
+
+	void OnCollisionStay2D(Collision2D coll)
 	{
 		if(coll.gameObject.tag == "enemy" && !wasHit)
 		{
