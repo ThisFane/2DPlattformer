@@ -10,8 +10,9 @@ public class PlayerUtil : MonoBehaviour
 	bool wasHit = false;
 	public GameObject arrow;
 
-	float invinceTime = 2f;
+	public int[] keys = new int[4];
 
+	float invinceTime = 2f;
 
 	// Use this for initialization
 	void Start () 
@@ -63,6 +64,12 @@ public class PlayerUtil : MonoBehaviour
 			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
 			wasHit = !wasHit;
 			Invoke("isHit", invinceTime);
+		}
+
+		if(coll.gameObject.tag == "key")
+		{
+			keys[coll.gameObject.GetComponent<Key>().whichKey] += 1;
+			Destroy(coll.gameObject);
 		}
 	}
 
