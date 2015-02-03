@@ -4,17 +4,25 @@ using System.Collections;
 
 public class DoorMech : MonoBehaviour
 {
+	[Tooltip("Player !AUS DER HIERACHY! muss hier eingefügt werden!")]
 	public GameObject player;
+	[Tooltip("Die Tür zu der es führen soll muss im Inspektor gesetzt werden.")]
 	public GameObject goal;
 
+	[Tooltip("Ist diese Tür ein Eingang?")]
 	public bool entrance = true;
+	[Tooltip("Ist diese Tür das \"Ende\" des Levels?")]
 	public bool isLevelExit = false;
+	[Tooltip("True, wenn das Player Objekt im Trigger ist!")]
 	public bool entered = false;
-	[Tooltip("True, wenn die Tür überhaupt mal ein Schloss hatte!")]
+	[Tooltip("GD: Muss gesetzt werden! True, wenn Locked Door!")]
 	public bool hasLock = false;
+	[Tooltip("GD: Muss gesetzt werden! True, wenn Tür einen Schlüssel benötigt!")]
 	public bool locked = false;
 
+	[Tooltip("Welcher Schlüssel wird für die Tür benötigt!")]
 	public int whichLock = 0;
+	[Tooltip("GD: Müssen gesetzt werden! (NICHT WENN PREFAB: \"Locked Door\" benutzt wird!")]
 	public Sprite[] keys = new Sprite[8];
 
 	string keyString = "<size=40>To Enter you need a bronze Key!</size>";
@@ -86,7 +94,7 @@ public class DoorMech : MonoBehaviour
 			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to leave.</size>");
 	
 		if(entered && locked && !(player.GetComponent<PlayerUtil>().keys[whichLock] >= 1))
-			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height), keyString);
+			GUI.Label(new Rect(Screen.width/4, Screen.height*0.8f, Screen.width, Screen.height), keyString);
 
 		if(entered && locked && player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
 			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to unlock.</size>");
