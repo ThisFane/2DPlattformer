@@ -8,14 +8,21 @@ public class PlayerUtil : MonoBehaviour
 	public int playerHealth = 10;
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
+
 	bool wasHit = false;
-	public GameObject[] hearts = new GameObject[5];
+
+	public AudioClip KeyPickup;
+
 	public Sprite[] heartSprite = new Sprite[3];
+
+	public GameObject[] hearts = new GameObject[5];
 	public GameObject arrow;
 
 	public int[] keys = new int[4];
 
 	float invinceTime = 2f;
+
+
 
 	// Use this for initialization
 	void Start () 
@@ -48,7 +55,23 @@ public class PlayerUtil : MonoBehaviour
 		}
 
 		updateHealth();
+		updateInv();
 
+	}
+
+	void updateInv()
+	{
+		for(int i = 0; i < keys.Length; i++)
+		{
+			if(keys[i] != 0)
+			{
+				GameObject.Find("Key_"+i).GetComponent<Image>().enabled = true;
+			}
+			if(keys[i] == 0)
+			{
+				GameObject.Find("Key_"+i).GetComponent<Image>().enabled = false;
+			}
+		}
 	}
 
 	void updateHealth()
@@ -89,6 +112,7 @@ public class PlayerUtil : MonoBehaviour
 	void die()
 	{
 		Application.OpenURL("https://www.youtube.com/watch?v=ANk8dEEVjLM");
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	void isHit()
@@ -107,6 +131,8 @@ public class PlayerUtil : MonoBehaviour
 
 		if(coll.gameObject.tag == "key")
 		{
+			GameObject.Find("Main Camera").audio.clip = KeyPickup;
+			GameObject.Find("Main Camera").audio.Play();
 			keys[coll.gameObject.GetComponent<Key>().whichKey] += 1;
 			Destroy(coll.gameObject);
 		}

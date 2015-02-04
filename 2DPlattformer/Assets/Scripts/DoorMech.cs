@@ -9,6 +9,8 @@ public class DoorMech : MonoBehaviour
 	[Tooltip("Die Tür zu der es führen soll muss im Inspektor gesetzt werden.")]
 	public GameObject goal;
 
+	public AudioClip openDoor;
+
 	[Tooltip("Ist diese Tür ein Eingang?")]
 	public bool entrance = true;
 	[Tooltip("Ist diese Tür das \"Ende\" des Levels?")]
@@ -110,6 +112,8 @@ public class DoorMech : MonoBehaviour
 	{
 		if(locked && entered && player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
 		{
+			GameObject.Find("Main Camera").audio.clip = openDoor;
+			GameObject.Find("Main Camera").audio.Play();
 			player.GetComponent<PlayerUtil>().keys[whichLock] -= 1;
 			locked = !locked;
 		}
