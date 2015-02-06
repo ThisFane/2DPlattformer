@@ -5,7 +5,8 @@ using System.Collections;
 public class PlayerUtil : MonoBehaviour 
 {
 	//public GameObject player;
-	public int playerHealth = 10;
+	public int playerHealth = 6;
+	public int playerMaxHealth = 6;
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
 
@@ -74,37 +75,438 @@ public class PlayerUtil : MonoBehaviour
 		}
 	}
 
+
+	//NEVER LOOK AT THIS CODE! xD
 	void updateHealth()
 	{
-		switch(playerHealth)
+		hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+		hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+		hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+		hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+		hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+
+		if(playerMaxHealth == 10)
 		{
-		case 0: hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+			hearts[0].gameObject.GetComponent<Image>().enabled = true;
+			hearts[1].gameObject.GetComponent<Image>().enabled = true;
+			hearts[2].gameObject.GetComponent<Image>().enabled = true;
+			hearts[3].gameObject.GetComponent<Image>().enabled = true;
+			hearts[4].gameObject.GetComponent<Image>().enabled = true;
+
+			switch(playerHealth)
+			{
+			case 0: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				die ();
 				break;
-		case 1: hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+			case 1: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 2:	hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+			case 2:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 3:	hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+			case 3:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 4: hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+			case 4: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 5: hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+			case 5: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 6:	hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+			case 6:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 7:	hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+			case 7:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 8:	hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+			case 8:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
 				break;
-		case 9:	hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+			case 9:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
 				break;
-		case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+			case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
 				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
 				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
 				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
 				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
 				break;
+			}
+		}
+		if(playerMaxHealth == 8)
+		{	
+			hearts[0].gameObject.GetComponent<Image>().enabled = true;
+			hearts[1].gameObject.GetComponent<Image>().enabled = true;
+			hearts[2].gameObject.GetComponent<Image>().enabled = true;
+			hearts[3].gameObject.GetComponent<Image>().enabled = true;
+			hearts[4].gameObject.GetComponent<Image>().enabled = false;
+
+			switch(playerHealth)
+			{
+			case 0: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				die ();
+				break;
+			case 1: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 2:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 3:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 4: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 5: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 6:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 7:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 8:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 9:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				break;
+			case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				break;
+			}
+		}
+		if(playerMaxHealth == 6)
+		{
+			hearts[0].gameObject.GetComponent<Image>().enabled = true;
+			hearts[1].gameObject.GetComponent<Image>().enabled = true;
+			hearts[2].gameObject.GetComponent<Image>().enabled = true;
+			hearts[3].gameObject.GetComponent<Image>().enabled = false;
+			hearts[4].gameObject.GetComponent<Image>().enabled = false;
+			switch(playerHealth)
+			{
+			case 0: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				die ();
+				break;
+			case 1: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 2:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 3:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 4: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 5: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 6:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 7:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 8:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 9:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				break;
+			case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				break;
+			}
+		}
+		if(playerMaxHealth == 4)
+		{	
+			hearts[0].gameObject.GetComponent<Image>().enabled = true;
+			hearts[1].gameObject.GetComponent<Image>().enabled = true;
+			hearts[2].gameObject.GetComponent<Image>().enabled = false;
+			hearts[3].gameObject.GetComponent<Image>().enabled = false;
+			hearts[4].gameObject.GetComponent<Image>().enabled = false;
+			switch(playerHealth)
+			{
+			case 0: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				die ();
+				break;
+			case 1: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 2:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 3:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 4: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 5: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 6:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 7:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 8:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 9:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				break;
+			case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				break;
+			}
+		}
+		if(playerMaxHealth == 2)
+		{	
+			hearts[0].gameObject.GetComponent<Image>().enabled = true;
+			hearts[1].gameObject.GetComponent<Image>().enabled = false;
+			hearts[2].gameObject.GetComponent<Image>().enabled = false;
+			hearts[3].gameObject.GetComponent<Image>().enabled = false;
+			hearts[4].gameObject.GetComponent<Image>().enabled = false;
+
+			switch(playerHealth)
+			{
+			case 0: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				die ();
+				break;
+			case 1: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 2:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 3:	
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 4: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 5: 
+				hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 6:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 7:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 8:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[2];
+				break;
+			case 9:	hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[1];
+				break;
+			case 10:hearts[0].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[1].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[2].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[3].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				hearts[4].gameObject.GetComponent<Image>().sprite = heartSprite[0];
+				break;
+			}
 		}
 	}
 
