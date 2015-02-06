@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 	GameObject cam;
 	GameObject player;
 	bool flipped = false;
-	public static int health = 10;
+	public int health = 10;
 	public int enemyType = 1;
 	public EnemyType enemy = new EnemyType();
 
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(enemy.getHealth() <= 0)
+		if(this.health <= 0)
 		{
 			Destroy(this.gameObject);
 		}
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
 		if(enemyType == 1)
 		{
 			enemy.setName("Lumberjack");
-			enemy.setHealth(5);
+			this.health = 5;
 			enemy.setAttack(1);
 		}
 
