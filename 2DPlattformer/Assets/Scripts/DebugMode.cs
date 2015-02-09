@@ -39,7 +39,7 @@ public class DebugMode : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.P) && DebugModus)
 		{
-			Debug.Log(Time.timeScale);
+			//Debug.Log(Time.timeScale);
 			onPause = !onPause;
 			if(Time.timeScale == 1)
 			{
@@ -51,11 +51,15 @@ public class DebugMode : MonoBehaviour
 			}
 
 		}
-		if(Input.GetKeyDown(KeyCode.L))
+		if(Input.GetKeyDown(KeyCode.L) && !onPause)
 		{
 			ui.GetComponent<Canvas>().enabled = !ui.GetComponent<Canvas>().enabled;
 			Debug.Log("Debug Mode"+ !DebugModus);
 			DebugModus = !DebugModus;
+		}
+		if(Input.GetKeyDown(KeyCode.L) && onPause)
+		{
+			Debug.Log("<size=15>DEBUG MODE CAN ONLY BE EXITED WHEN NOT IN PAUSE</size>");
 		}
 	}
 

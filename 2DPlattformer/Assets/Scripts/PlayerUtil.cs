@@ -10,9 +10,10 @@ public class PlayerUtil : MonoBehaviour
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
 
-	int savePlayerMaxHealth = 0;
+	int savePlayerMaxHealth = 6;
 
 	bool wasHit = false;
+	bool healthDone = false;
 
 	public AudioClip KeyPickup;
 
@@ -71,14 +72,17 @@ public class PlayerUtil : MonoBehaviour
 	
 		if(DebugMode.infHealth)
 		{
+			Debug.Log("INFINTE HEALTH");
 			savePlayerMaxHealth = playerMaxHealth;
 			playerMaxHealth = 10;
 			playerHealth = 1000;
+			healthDone = false;
 		}
-		if(!DebugMode.infHealth)
+		if(!DebugMode.infHealth && !healthDone)
 		{
+			healthDone = true;
 			playerMaxHealth = savePlayerMaxHealth;
-			playerHealth = 1000;
+			playerHealth = 6;
 		}
 
 		updateHealth();
