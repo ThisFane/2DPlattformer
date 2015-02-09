@@ -73,7 +73,7 @@ public class Projectile : MonoBehaviour
 			GameObject UIDamageInstance = Instantiate(UIDamage, new Vector3(enemyPos.x, enemyPos.y, enemyPos.z), Quaternion.identity) as GameObject;
 			UIDamageInstance.GetComponent<RectTransform>().localScale = new Vector3(0.002f, 0.002f, 0.002f);
 			UIDamageInstance.transform.parent = PlayerUI.transform;
-			UIDamage.GetComponent<Text>().text = PlayerUtil.playerAttack+"";
+			UIDamageInstance.GetComponent<Text>().text = PlayerUtil.playerAttack+"";
 			if(PlayerMovement.lookingLeft)
 				UIDamageInstance.rigidbody2D.velocity = new Vector2(-0.7f, 1.6f);
 			if(!PlayerMovement.lookingLeft)

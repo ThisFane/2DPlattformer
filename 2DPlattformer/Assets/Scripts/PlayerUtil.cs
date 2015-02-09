@@ -10,6 +10,8 @@ public class PlayerUtil : MonoBehaviour
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
 
+	int savePlayerMaxHealth = 0;
+
 	bool wasHit = false;
 
 	public AudioClip KeyPickup;
@@ -37,7 +39,7 @@ public class PlayerUtil : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetButtonDown("Fire1"))
+		if(Input.GetButtonDown("Fire1") && !DebugMode.onPause && !DebugMode.DebugModus)
 		{
 			GameObject Projectile = Instantiate(arrow, new Vector3(this.transform.position.x, this.transform.position.y, 0f), Quaternion.identity) as GameObject; 
 		}
@@ -53,6 +55,30 @@ public class PlayerUtil : MonoBehaviour
 			{
 				Application.LoadLevel("test1");
 			}
+		}
+
+
+		if(DebugMode.instantKill)
+		{
+			playerAttack = 1337;
+		}
+
+		if(!DebugMode.instantKill)
+		{
+			playerAttack = 1;
+		}
+
+	
+		if(DebugMode.infHealth)
+		{
+			savePlayerMaxHealth = playerMaxHealth;
+			playerMaxHealth = 10;
+			playerHealth = 1000;
+		}
+		if(!DebugMode.infHealth)
+		{
+			playerMaxHealth = savePlayerMaxHealth;
+			playerHealth = 1000;
 		}
 
 		updateHealth();
