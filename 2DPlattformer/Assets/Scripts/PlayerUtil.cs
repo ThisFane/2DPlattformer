@@ -14,6 +14,7 @@ public class PlayerUtil : MonoBehaviour
 
 	bool wasHit = false;
 	bool healthDone = false;
+	public static bool isGameOver = false;
 
 	public AudioClip KeyPickup;
 	public Animator animator;
@@ -88,7 +89,7 @@ public class PlayerUtil : MonoBehaviour
 		}
 
 		updateHealth();
-		Debug.Log("HEALTH "+playerHealth);
+		//Debug.Log("HEALTH "+playerHealth);
 		updateInv();
 
 	}
@@ -547,6 +548,8 @@ public class PlayerUtil : MonoBehaviour
 	void die()
 	{
 		animator.SetBool ("isGameOver", true);
+		isGameOver = true;
+		PlayerMovement.speed = 0;
 		///Application.OpenURL("https://www.youtube.com/watch?v=ANk8dEEVjLM");
 		//Application.LoadLevel(Application.loadedLevel);
 	}

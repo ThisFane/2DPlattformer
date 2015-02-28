@@ -5,11 +5,12 @@ public class PlayerMovement : MonoBehaviour
 {
 
 	public GameObject player;
-	public float speed = 3f;
+	public static float speed = 3f;
 	public float jumpHeight = 3f;
 	public float gravity = 1f;
 	public static bool grounded = false;
 	public static bool lookingLeft = false;
+
 
 	// Use this for initialization
 	void Start () 
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if(Input.GetButtonDown("Jump") && isGrounded())
+		if(Input.GetButtonDown("Jump") && isGrounded() && PlayerUtil.isGameOver == false)
 		{
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
 		}
@@ -68,10 +69,12 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Flip()
 	{
-		lookingLeft = !lookingLeft;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		if (PlayerUtil.isGameOver == false) {
+				lookingLeft = !lookingLeft;
+				Vector3 theScale = transform.localScale;
+				theScale.x *= -1;
+				transform.localScale = theScale;
+		}
 	}
 
 
