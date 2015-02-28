@@ -16,6 +16,8 @@ public class PlayerUtil : MonoBehaviour
 	bool healthDone = false;
 
 	public AudioClip KeyPickup;
+	public Animator animator;
+
 
 	public Sprite[] heartSprite = new Sprite[3];
 
@@ -544,8 +546,9 @@ public class PlayerUtil : MonoBehaviour
 
 	void die()
 	{
-		Application.OpenURL("https://www.youtube.com/watch?v=ANk8dEEVjLM");
-		Application.LoadLevel(Application.loadedLevel);
+		animator.SetBool ("isGameOver", true);
+		///Application.OpenURL("https://www.youtube.com/watch?v=ANk8dEEVjLM");
+		//Application.LoadLevel(Application.loadedLevel);
 	}
 
 	void isHit()
