@@ -4,9 +4,9 @@ using System.Collections;
 public class PlayerAnim : MonoBehaviour {
 
 	public GameObject Player;
-	public double SpeedBla;
+	public double runningSpeed;
 	public Animator animator;
-	public double JumpSpeed;
+	public double jumpSpeed;
 
 	void Start () 
 	{
@@ -15,17 +15,17 @@ public class PlayerAnim : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		SpeedBla = Player.rigidbody2D.velocity.x;
-		JumpSpeed = Player.rigidbody2D.velocity.y;
+		runningSpeed = Player.rigidbody2D.velocity.x;
+		jumpSpeed = Player.rigidbody2D.velocity.y;
 
-		if (SpeedBla > 0.001||SpeedBla < -0.001){
+		if (runningSpeed > 0.001||runningSpeed < -0.001){
 			animator.SetBool ("isRunning", true);
 		}else
 		{
 			animator.SetBool("isRunning", false);
 		}
 
-		if (JumpSpeed > 0.001||JumpSpeed < -0.001){
+		if (jumpSpeed > 0.001||jumpSpeed < -0.001){
 			animator.SetBool ("isJumping", true);
 		}else
 		{
