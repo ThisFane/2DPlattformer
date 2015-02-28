@@ -25,7 +25,7 @@ public class PlayerAnim : MonoBehaviour {
 			animator.SetBool("isRunning", false);
 		}
 
-		if (JumpSpeed > 0.001){
+		if (JumpSpeed > 0.001||JumpSpeed < -0.001){
 			animator.SetBool ("isJumping", true);
 		}else
 		{
