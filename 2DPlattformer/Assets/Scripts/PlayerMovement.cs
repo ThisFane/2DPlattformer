@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpHeight = 3f;
 	public float gravity = 1f;
 	public static bool grounded = false;
-	public static bool lookingLeft = true;
+	public static bool lookingLeft = false;
 
 	// Use this for initialization
 	void Start () 
