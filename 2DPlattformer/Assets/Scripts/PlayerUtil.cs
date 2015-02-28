@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerUtil : MonoBehaviour 
 {
 	//public GameObject player;
-	public int playerHealth = 6;
+	public static int playerHealth = 6;
 	public int playerMaxHealth = 6;
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
