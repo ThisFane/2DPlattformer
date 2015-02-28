@@ -5,15 +5,21 @@ public class PlayerAnim : MonoBehaviour {
 
 	public GameObject Player;
 	public double SpeedBla;
-	Animator animator;
-	
-	// Update is called once per frame
-	void FiexdUpdate () {
-		SpeedBla = Player.rigidbody2D.velocity.y;
+	public Animator animator;
 
-		if (SpeedBla >= 1){
+	void Start () 
+	{
+	}
+
+	void FixedUpdate () {
+
+		SpeedBla = Player.rigidbody2D.velocity.x;
+
+
+		if (SpeedBla > 0.001||SpeedBla < -0.001){
 			animator.SetBool ("isRunning", true);
-		}else{
+		}else
+		{
 			animator.SetBool("isRunning", false);
 		}
 	}
