@@ -10,6 +10,7 @@ public class PlayerAnim : MonoBehaviour {
 
 	void Start () 
 	{
+
 	}
 
 	void FixedUpdate () {
