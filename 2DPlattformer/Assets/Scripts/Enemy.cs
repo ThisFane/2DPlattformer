@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 	GameObject cam;
 	GameObject player;
 	bool flipped = false;
+	short LastWayPoint = 1;
+	Vector3 OriPos;
 	public int health = 10;
 	public int enemyType = 1;
 	public EnemyType enemy = new EnemyType();
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		OriPos = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
 		player = GameObject.FindGameObjectWithTag("Player");
 		enemyTypeCheck();
@@ -41,6 +44,7 @@ public class Enemy : MonoBehaviour
 			transform.localScale = theScale;
 			flipped = false;
 		}
+
 	}
 
 	bool isPlayerLeftOfMe()
@@ -60,6 +64,11 @@ public class Enemy : MonoBehaviour
 		//this.rigidbody2D.velocity = new Vector2((player.position.x-this.transform.position.x)*0.5f, rigidbody2D.velocity.y);
 	}
 
+	void SearchWayPoint()
+	{
+
+	}
+
 	void FixedUpdate()
 	{
 		//this.transform.position += transform.up * 0.3f * Time.deltaTime;                 
@@ -71,14 +80,14 @@ public class Enemy : MonoBehaviour
 		{
 			enemy.setName("Lumberjack");
 			this.health = 5;
-			enemy.setAttack(1);
+			enemy.setAttack(3);
 		}
 
 		if(enemyType == 2)
 		{
-			enemy.setName("Stuff");
-			enemy.setHealth(8);
-			enemy.setAttack(1);
+			enemy.setName("Blue Bird With Yellow Shoes");
+			this.health = 8;
+			enemy.setAttack(2);
 		}
 
 	}

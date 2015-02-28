@@ -5,12 +5,12 @@ using System.Collections;
 public class PlayerUtil : MonoBehaviour 
 {
 	//public GameObject player;
-	public int playerHealth = 6;
-	public int playerMaxHealth = 6;
+	public uint playerHealth = 6;
+	public uint playerMaxHealth = 6;
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
 
-	int savePlayerMaxHealth = 6;
+	uint savePlayerMaxHealth = 6;
 
 	bool wasHit = false;
 	bool healthDone = false;
@@ -86,6 +86,7 @@ public class PlayerUtil : MonoBehaviour
 		}
 
 		updateHealth();
+		Debug.Log("HEALTH "+this.playerHealth);
 		updateInv();
 
 	}
@@ -556,7 +557,7 @@ public class PlayerUtil : MonoBehaviour
 	{
 		if(coll.gameObject.tag == "enemy" && !wasHit)
 		{
-			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			playerHealth -= (uint)coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
 			wasHit = !wasHit;
 			Invoke("isHit", invinceTime);
 		}
@@ -574,7 +575,7 @@ public class PlayerUtil : MonoBehaviour
 	{
 		if(coll.gameObject.tag == "enemy" && !wasHit)
 		{
-			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			playerHealth -= (uint)coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
 			wasHit = !wasHit;
 			Invoke("isHit", invinceTime);
 		}
