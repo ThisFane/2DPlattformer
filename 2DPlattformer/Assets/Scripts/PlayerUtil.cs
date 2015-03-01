@@ -43,7 +43,7 @@ public class PlayerUtil : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetButtonDown("Fire1") && !DebugMode.onPause && !DebugMode.DebugModus)
+		if(Input.GetButtonDown("Fire1") && !DebugMode.onPause && !DebugMode.DebugModus && !isGameOver)
 		{
 			GameObject Projectile = Instantiate(arrow, new Vector3(this.transform.position.x, this.transform.position.y, 0f), Quaternion.identity) as GameObject; 
 		}
