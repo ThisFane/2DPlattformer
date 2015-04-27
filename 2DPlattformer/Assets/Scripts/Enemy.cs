@@ -1,35 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour 
+public abstract class Enemy : MonoBehaviour
 {
-	GameObject cam;
-	GameObject player;
-	bool flipped = false;
-	short LastWayPoint = 1;
-	Vector3 OriPos;
-	public int health = 10;
-	public int enemyType = 1;
-	public EnemyType enemy = new EnemyType();
+	private string name = "Lumberjack";
+	private int health = 5;
+	private int attack = 1;
+	private int speed = 2;
+
+	private GameObject cam;
+	public GameObject player;
+	
+	private bool flipped = false;
+	private short LastWayPoint = 1;
+	private Vector3 OriPos;
 
 	// Use this for initialization
 	void Start () 
 	{
-		OriPos = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
-		cam = GameObject.FindGameObjectWithTag("MainCamera");
-		player = GameObject.FindGameObjectWithTag("Player");
-		enemyTypeCheck();
+	}
+
+	public void initCam()
+	{
+		this.cam = GameObject.FindGameObjectWithTag("MainCamera");
+	}
+
+	public void initPos()
+	{
+		this.OriPos = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
+	}
+
+	public void initPlayer()
+	{
+		this.player = GameObject.FindGameObjectWithTag("Player");
+	}
+
+	public void setVar(int h, int atk, int spe)
+	{
+		this.health = h;
+		this.attack = atk;
+		this.speed = spe;
+	}
+
+	public Enemy(int hp, int atk, int spe)
+	{
+		this.health = hp;
+		this.attack = atk;
+		this.speed = spe;
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		if(this.health <= 0)
-		{
-			Destroy(this.gameObject);
-		}
-		if(enemyType == 1 && player.renderer.isVisible && this.renderer.isVisible)
-			chasePlayer(); 
+	}
+
+	public void turnAround()
+	{
 		if(isPlayerLeftOfMe() && !flipped) 
 		{	
 			Vector3 theScale = transform.localScale;
@@ -44,10 +70,9 @@ public class Enemy : MonoBehaviour
 			transform.localScale = theScale;
 			flipped = false;
 		}
-
 	}
 
-	bool isPlayerLeftOfMe()
+	public bool isPlayerLeftOfMe()
 	{
 		if(player.transform.position.x-this.transform.position.x < 0)
 			return false;
@@ -55,42 +80,44 @@ public class Enemy : MonoBehaviour
 			return true;
 	}
 
-	void chasePlayer()
+	public GameObject getPlayer()
 	{
-		Transform plT = player.transform;
-		//transform.LookAt(player.position);
-		this.transform.Translate(new Vector3((plT.position.x-this.transform.position.x)*0.5f*Time.deltaTime, 0f, 0f));
-		//Debug.Log(this.rigidbody2D.velocity);
-		//this.rigidbody2D.velocity = new Vector2((player.position.x-this.transform.position.x)*0.5f, rigidbody2D.velocity.y);
+		return this.player;
 	}
 
-	void SearchWayPoint()
+	public void killEnemy()
 	{
-
+		if(this.health <= 0)
+		 Destroy(this.gameObject);
 	}
 
-	void FixedUpdate()
+	public void setName(string n)
 	{
-		//this.transform.position += transform.up * 0.3f * Time.deltaTime;                 
+		this.name = n;
+	}
+	
+	public string getName()
+	{
+		return this.name;
+	}
+	
+	public void setHealth(int hp)
+	{
+		this.health = hp;
+	}
+	
+	public int getHealth()
+	{
+		return this.health;
+	}
+	
+	public void setAttack(int atk)
+	{
+		this.attack = atk;
 	}
 
-	void enemyTypeCheck()
+	public int getAttack()
 	{
-		if(enemyType == 1)
-		{
-			enemy.setName("Lumberjack");
-			this.health = 5;
-			enemy.setAttack(3);
-		}
-
-		if(enemyType == 2)
-		{
-			enemy.setName("Blue Bird With Yellow Shoes");
-			this.health = 8;
-			enemy.setAttack(2);
-		}
-
+		return this.attack;
 	}
-
-
 }

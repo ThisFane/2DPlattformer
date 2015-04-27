@@ -1,59 +1,43 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
-public class DoorMech : MonoBehaviour
+public class LockedDoor : Door 
 {
-	[Tooltip("Player !AUS DER HIERACHY! muss hier eingefügt werden!")]
-	public GameObject player;
-	[Tooltip("Die Tür zu der es führen soll muss im Inspektor gesetzt werden.")]
-	public GameObject goal;
-
-	public AudioClip openDoor;
-
-	[Tooltip("Ist diese Tür ein Eingang?")]
-	public bool entrance = true;
-	[Tooltip("Ist diese Tür das \"Ende\" des Levels?")]
-	public bool isLevelExit = false;
-	[Tooltip("True, wenn das Player Objekt im Trigger ist!")]
-	public bool entered = false;
 	[Tooltip("GD: Muss gesetzt werden! True, wenn Locked Door!")]
-	public bool hasLock = false;
+	public bool hasLock = true; //obsolete
 	[Tooltip("GD: Muss gesetzt werden! True, wenn Tür einen Schlüssel benötigt!")]
-	public bool locked = false;
-
+	public bool locked = true;
+	
 	[Tooltip("Welcher Schlüssel wird für die Tür benötigt!")]
 	public int whichLock = 0;
 	[Tooltip("GD: Müssen gesetzt werden! (NICHT WENN PREFAB: \"Locked Door\" benutzt wird!")]
 	public Sprite[] keys = new Sprite[8];
-
+	
 	string keyString = "<size=40>To Enter you need a bronze Key!</size>";
 
-	// Use this for initialization
-	void Start () 
+	void Start()
 	{
+		initAll();
+		setKeyString();
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.W) && entered && !hasLock)
-		{
-			player.transform.position = new Vector3(this.goal.transform.position.x+0.3f, this.goal.transform.position.y, this.goal.transform.position.z);
-		}
+		letIn();
+		setLockSprite();
+	}
+
+	public void letIn()
+	{
 		if(Input.GetKeyDown(KeyCode.W) && entered && hasLock && locked)
 		{
 			if(player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
-				unlock();
+			 unlock();
 		}
 		if(Input.GetKeyDown(KeyCode.W) && entered && hasLock && !locked)
 		{
 			player.transform.position = new Vector3(this.goal.transform.position.x+0.3f, this.goal.transform.position.y, this.goal.transform.position.z);
-		}
-		if(hasLock)
-		{
-			setKeyString();
-			setLockSprite();
 		}
 	}
 
@@ -87,49 +71,28 @@ public class DoorMech : MonoBehaviour
 			this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = keys[whichLock+4];
 		if(whichLock == 3 && !locked)
 			this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = keys[whichLock+4];
-
-	}
-
-	void OnGUI()
-	{
-		if(entered && !entrance)
-			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to leave.</size>");
-	
-		if(entered && locked && !(player.GetComponent<PlayerUtil>().keys[whichLock] >= 1))
-			GUI.Label(new Rect(Screen.width/4, Screen.height*0.8f, Screen.width, Screen.height), keyString);
-
-		if(entered && locked && player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
-			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to unlock.</size>");
-
-		if(entered && entrance && !isLevelExit && !locked)
-			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to enter.</size>");
-	
-	
-	
 	}
 
 	void unlock()
 	{
 		if(locked && entered && player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
 		{
-			GameObject.Find("Main Camera").audio.clip = openDoor;
-			GameObject.Find("Main Camera").audio.Play();
+			GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = openDoor;
+			GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
 			player.GetComponent<PlayerUtil>().keys[whichLock] -= 1;
 			locked = !locked;
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnGUI()
 	{
-		if(other.gameObject.tag == "Player")
-			entered = true;
-		//Debug.Log(this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite);
-	}
+		if(entered && locked && !(player.GetComponent<PlayerUtil>().keys[whichLock] >= 1))
+			GUI.Label(new Rect(Screen.width/4, Screen.height*0.8f, Screen.width, Screen.height), keyString);
+	
+		if(entered && locked && player.GetComponent<PlayerUtil>().keys[whichLock] >= 1)
+			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to unlock.</size>");
 
-	void OnTriggerExit2D(Collider2D other)
-	{
-		if(other.gameObject.tag == "Player")
-			entered = false;
+		if(entered && entrance && !isLevelExit && !locked)
+			GUI.Label(new Rect(Screen.width/3, Screen.height*0.8f, Screen.width, Screen.height),"<size=40>Press 'UP' to enter.</size>");
 	}
-
 }

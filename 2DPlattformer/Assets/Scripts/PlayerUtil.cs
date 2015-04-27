@@ -19,7 +19,6 @@ public class PlayerUtil : MonoBehaviour
 	public AudioClip KeyPickup;
 	public Animator animator;
 
-
 	public Sprite[] heartSprite = new Sprite[3];
 
 	public GameObject[] hearts = new GameObject[5];
@@ -547,7 +546,7 @@ public class PlayerUtil : MonoBehaviour
 
 	void die()
 	{
-		animator.SetBool ("isGameOver", true);
+		//animator.SetBool ("isGameOver", true);
 		isGameOver = true;
 		PlayerMovement.speed = 0;
 		///Application.OpenURL("https://www.youtube.com/watch?v=ANk8dEEVjLM");
@@ -563,15 +562,15 @@ public class PlayerUtil : MonoBehaviour
 	{
 		if(coll.gameObject.tag == "enemy" && !wasHit)
 		{
-			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			playerHealth -= coll.gameObject.GetComponent<Enemy>().getAttack();
 			wasHit = !wasHit;
 			Invoke("isHit", invinceTime);
 		}
 
 		if(coll.gameObject.tag == "key")
 		{
-			GameObject.Find("Main Camera").audio.clip = KeyPickup;
-			GameObject.Find("Main Camera").audio.Play();
+			GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = KeyPickup;
+			GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
 			keys[coll.gameObject.GetComponent<Key>().whichKey] += 1;
 			Destroy(coll.gameObject);
 		}
@@ -581,7 +580,7 @@ public class PlayerUtil : MonoBehaviour
 	{
 		if(coll.gameObject.tag == "enemy" && !wasHit)
 		{
-			playerHealth -= coll.gameObject.GetComponent<Enemy>().enemy.getAttack();
+			playerHealth -= coll.gameObject.GetComponent<Enemy>().getAttack();
 			wasHit = !wasHit;
 			Invoke("isHit", invinceTime);
 		}

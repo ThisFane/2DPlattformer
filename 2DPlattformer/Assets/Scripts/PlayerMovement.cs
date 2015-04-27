@@ -5,11 +5,13 @@ public class PlayerMovement : MonoBehaviour
 {
 
 	public GameObject player;
+
 	public static float speed = 3f;
 	public float jumpHeight = 3f;
 	public float gravity = 1f;
+
 	public static bool grounded = false;
-	public static bool lookingLeft = false;
+	public static bool lookingLeft = true;
 
 
 	// Use this for initialization
@@ -23,18 +25,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(Input.GetButtonDown("Jump") && isGrounded() && PlayerUtil.isGameOver == false)
 		{
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpHeight);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
 		}
 
 		if(DebugMode.flyingMode)
 		{
 
-			player.rigidbody2D.mass = 0;
-			player.rigidbody2D.gravityScale = 0;
+			player.GetComponent<Rigidbody2D>().mass = 0;
+			player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
 			float move = Input.GetAxis("Horizontal");
 			float moveVerct = Input.GetAxis("Vertical");
-			rigidbody2D.velocity = new Vector2(move * speed, moveVerct * speed);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(move * speed, moveVerct * speed);
 			
 			if(move < 0 && !lookingLeft)
 				Flip();
@@ -43,11 +45,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if(!DebugMode.flyingMode)
 		{
-			player.rigidbody2D.mass = 1;
-			player.rigidbody2D.gravityScale = 1;
+			player.GetComponent<Rigidbody2D>().mass = 1;
+			player.GetComponent<Rigidbody2D>().gravityScale = 1;
 
 			float move = Input.GetAxis("Horizontal");
-			rigidbody2D.velocity = new Vector2(move * speed, rigidbody2D.velocity.y);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(move * speed, GetComponent<Rigidbody2D>().velocity.y);
 		
 		if(move < 0 && !lookingLeft)
 			Flip();
@@ -76,8 +78,7 @@ public class PlayerMovement : MonoBehaviour
 				transform.localScale = theScale;
 		}
 	}
-
-
+	
 	void OnCollisionStay2D(Collision2D coll)
 	{
 		if(coll.gameObject.tag == "ground")

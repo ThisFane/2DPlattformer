@@ -15,8 +15,8 @@ public class PlayerAnim : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		runningSpeed = Player.rigidbody2D.velocity.x;
-		jumpSpeed = Player.rigidbody2D.velocity.y;
+		runningSpeed = Player.GetComponent<Rigidbody2D>().velocity.x;
+		jumpSpeed = Player.GetComponent<Rigidbody2D>().velocity.y;
 
 		if (runningSpeed > 0.001||runningSpeed < -0.001){
 			animator.SetBool ("isRunning", true);

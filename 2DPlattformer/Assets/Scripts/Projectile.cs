@@ -36,13 +36,13 @@ public class Projectile : MonoBehaviour
 			Vector3 theScale = transform.localScale;
 			theScale.x *= 1;
 			transform.localScale = theScale;
-			if(player.rigidbody2D.velocity.x != 0)
+			if(player.GetComponent<Rigidbody2D>().velocity.x != 0)
 			{ 
-				rigidbody2D.velocity = new Vector2((3f+(player.rigidbody2D.velocity.x*1.4f)), -0.1f);
+				GetComponent<Rigidbody2D>().velocity = new Vector2((3f+(player.GetComponent<Rigidbody2D>().velocity.x*1.4f)), -0.1f);
 				//Debug.Log("MIT PLAYER: "+(player.rigidbody2D.velocity.x*10f));
 			}
 			else
-			 rigidbody2D.velocity = new Vector2(3f, -0.1f);
+			 GetComponent<Rigidbody2D>().velocity = new Vector2(3f, -0.1f);
 		}
 
 		if(direction)
@@ -53,12 +53,12 @@ public class Projectile : MonoBehaviour
 			transform.localScale = theScale;
 
 
-			if(player.rigidbody2D.velocity.x != 0)
+			if(player.GetComponent<Rigidbody2D>().velocity.x != 0)
 			{	
-				rigidbody2D.velocity = new Vector2((-3f+(player.rigidbody2D.velocity.x*1.4f)), -0.1f);
+				GetComponent<Rigidbody2D>().velocity = new Vector2((-3f+(player.GetComponent<Rigidbody2D>().velocity.x*1.4f)), -0.1f);
 			}
 			else
-			 rigidbody2D.velocity = new Vector2(-3f, -0.1f);
+			 GetComponent<Rigidbody2D>().velocity = new Vector2(-3f, -0.1f);
 		}
 	}
 
@@ -75,11 +75,11 @@ public class Projectile : MonoBehaviour
 			UIDamageInstance.transform.parent = PlayerUI.transform;
 			UIDamageInstance.GetComponent<Text>().text = PlayerUtil.playerAttack+"";
 			if(PlayerMovement.lookingLeft)
-				UIDamageInstance.rigidbody2D.velocity = new Vector2(-0.7f, 1.6f);
+				UIDamageInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(-0.7f, 1.6f);
 			if(!PlayerMovement.lookingLeft)
-				UIDamageInstance.rigidbody2D.velocity = new Vector2(0.7f, 1.6f);
+				UIDamageInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(0.7f, 1.6f);
 			Destroy(UIDamageInstance, 1.5f);
-			temp.GetComponent<Enemy>().health -= PlayerUtil.playerAttack;
+			temp.GetComponent<Enemy>().setHealth((temp.GetComponent<Enemy>().getHealth() - PlayerUtil.playerAttack));
 			collidedWithEnemy = !collidedWithEnemy;
 
 			Destroy(arrow);
