@@ -10,6 +10,8 @@ public class PlayerUtil : MonoBehaviour
 	public static int playerAttack = 1;
 	public int playerAttackSpeed = 2; 
 
+	public Weapon equipped;
+
 	int savePlayerMaxHealth = 6;
 
 	bool wasHit = false;
@@ -567,11 +569,18 @@ public class PlayerUtil : MonoBehaviour
 			Invoke("isHit", invinceTime);
 		}
 
-		if(coll.gameObject.tag == "key")
+		if(coll.gameObject.tag == "drop")
 		{
-			GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = KeyPickup;
-			GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
-			keys[coll.gameObject.GetComponent<Key>().whichKey] += 1;
+			if(coll.gameObject.GetComponent<Drops>().isKey())
+			{
+				GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = KeyPickup;
+				GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
+				keys[(int)coll.gameObject.GetComponent<Key>().kt] += 1;
+			}
+			if(coll.gameObject.GetComponent<Drops>().isExp())
+			{
+				//Code für aufsammeln von EXP GetEquiped Weapon
+			}
 			Destroy(coll.gameObject);
 		}
 	}

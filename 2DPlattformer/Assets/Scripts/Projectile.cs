@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Projectile : MonoBehaviour 
+public class Projectile : Weapon 
 {
 	public GameObject arrow;
 	public GameObject player;
