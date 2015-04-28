@@ -19,13 +19,17 @@ public class Door : MonoBehaviour
 
 	void Start()
 	{
+		//Guckt ob die Tür "Door 2" heißt
+		//Falls Ja, dann ist dies der "Ausgang"
+		//Damit GUI ausgibt "...to leave"
 		if(this.gameObject.name.Equals("Door_2"))
 		{
-
+			entrance = false;
 		}
 		initAll();
 	}
 
+	//Findet Player und setzt das Ziel der Tür
 	public void initAll()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -43,7 +47,8 @@ public class Door : MonoBehaviour
 	{
 		letIn();
 	}
-	
+
+	//Sofern Player sich in der Collider Box der Tür befindet und 'W' drückt geht er rein
 	public void letIn()
 	{
 		if(Input.GetKeyDown(KeyCode.W) && entered)
@@ -52,6 +57,7 @@ public class Door : MonoBehaviour
 		}
 	}
 
+	//Einfach das GUI Label "Press 'UP' to enter"
 	void OnGUI()
 	{
 		if(entered && entrance)

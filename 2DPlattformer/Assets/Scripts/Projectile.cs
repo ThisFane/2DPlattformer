@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Projectile : MonoBehaviour 
+public class Projectile : Weapon 
 {
 	public GameObject arrow;
 	public GameObject player;
@@ -78,7 +78,7 @@ public class Projectile : MonoBehaviour
 				UIDamageInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(-0.7f, 1.6f);
 			if(!PlayerMovement.lookingLeft)
 				UIDamageInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(0.7f, 1.6f);
-			Destroy(UIDamageInstance, 1.5f);
+			Destroy(UIDamageInstance, 1.0f);
 			temp.GetComponent<Enemy>().setHealth((temp.GetComponent<Enemy>().getHealth() - PlayerUtil.playerAttack));
 			collidedWithEnemy = !collidedWithEnemy;
 

@@ -10,7 +10,8 @@ public abstract class Enemy : MonoBehaviour
 
 	private GameObject cam;
 	public GameObject player;
-	
+
+	private Drops drps;
 	private bool flipped = false;
 	private short LastWayPoint = 1;
 	private Vector3 OriPos;

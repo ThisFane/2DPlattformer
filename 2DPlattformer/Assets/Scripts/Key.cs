@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Key : MonoBehaviour 
+public class Key : Drops 
 {
-
 	GameObject key;
-	public int whichKey = 0;
+
+	public enum KeyType{BRONZE=0, SILVER=1, GOLD=2, SPECIALGOLD=3};
+	public KeyType kt;
+
 	public Sprite[] keySprites = new Sprite[4];
 
 	// Use this for initialization
@@ -22,21 +24,21 @@ public class Key : MonoBehaviour
 
 	void WhatKey()
 	{
-		if(whichKey == 0)
+		if(this.kt.Equals(KeyType.BRONZE))
 		{
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[whichKey];
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[(int)kt];
 		}
-		if(whichKey == 1)
+		if(this.kt.Equals(KeyType.SILVER))
 		{
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[whichKey];
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[(int)kt];
 		}
-		if(whichKey == 2)
+		if(this.kt.Equals(KeyType.GOLD))
 		{
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[whichKey];
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[(int)kt];
 		}
-		if(whichKey == 3)
+		if(this.kt.Equals(KeyType.SPECIALGOLD))
 		{
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[whichKey];
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = keySprites[(int)kt];
 		}
 	}
 
